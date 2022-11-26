@@ -5,7 +5,7 @@ require_once "vendor/autoload.php";
 use App\Controllers\ArticlesController;
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
-$cont = (new ArticlesController())->getAllArticles();
+$cont = (new ArticlesController())->getAllArticles()->getLastEntries();
 
 echo "<pre>";
 
@@ -13,7 +13,7 @@ var_dump($cont);
 
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
-    $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'index']);
+    $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'getAllArticles']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -38,9 +38,24 @@ switch ($routeInfo[0]) {
         $vars = $routeInfo[2];
         [$controller, $method] = $handler;
         $response = (new $controller)->{$method}();
-        echo $response;
+//        echo $response;
         break;
 }
+?>
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Global News</title>
+</head>
+<body>
+
+
+</body>
+</html>
 
 

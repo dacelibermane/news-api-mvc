@@ -19,13 +19,12 @@ class ArticlesCollection
     {
         $this->articles [] = $article;
     }
+    
+    public function getLastEntries( int $amount = 10):array
+    {
 
-
-//    public function getLastEntries(int $amount = 10)
-//    {
-//        $this->
-//        return array_slice($this->articles, -$amount);
-//    }
+        return array_slice($this->articles, -$amount);
+    }
 
 
 }
