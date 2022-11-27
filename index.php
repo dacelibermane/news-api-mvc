@@ -6,28 +6,6 @@ use App\Controllers\ArticlesController;
 use App\Models\Article;
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
-//echo '<pre>';
-//
-//$articles = (new ArticlesController())->getAllArticles()->getLastEntries(10);
-//echo $articles[0];
-//foreach ($articles as $article){
-//    var_dump($article[0]->getTitle);
-//}
-//$articlesApi = (new ArticlesController())->getAllArticles();
-////$t = $articlesApi->getArticles()[0]->getTitle();
-//var_dump($articlesApi->getSpecifiedCountOfNews());
-////tiekam pie pirmās ziņas virsraksta
-//var_dump($articlesApi[0]->getTitle());
-//var_dump($t);
-//foreach ($articlesApi as $value){
-//    var_dump($value->articles[0]);
-//}
-
-//$articlesApi = (new ArticlesController())->getAllArticles();
-//$t = $articlesApi->getLastEntries();
-//
-//var_dump($t);
-
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
     $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'index']);
 });
