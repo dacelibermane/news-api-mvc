@@ -20,8 +20,9 @@ class ArticlesCollection
         $this->articles [] = $article;
     }
 
-    public function getLastEntries(int $amount = 10): array
+    public function getArticles(): array
     {
-        return array_slice($this->articles, -$amount);
+        return $this->articles;
     }
+
 }

@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
+use App\ArticlesCollection;
+
 require_once "vendor/autoload.php";
 
-use App\Controllers\ArticlesController;
-use App\Models\Article;
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
@@ -31,7 +31,5 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         [$controller, $method] = $handler;
-        $response = (new $controller)->{$method}();
-        echo $response;
-        break;
+        echo (new $controller)->{$method}();
 }

@@ -8,29 +8,20 @@ use jcobhams\NewsApi\NewsApi;
 
 class ArticlesController extends BaseController
 {
-
-    public function getAllArticles(): ArticlesCollection
-    {
-        $apiKey = $_ENV['API_KEY'];
-        $newsApi = new NewsApi($apiKey);
-        $articlesApiResponse = $newsApi->getEverything($_GET['search'] ?? 'Tesla');
-//        $articlesApiResponse = $newsApi->getTopHeadlines("apple");
-
-        $articles = new ArticlesCollection();
-        foreach ($articlesApiResponse->articles as $article) {
-            $articles->addArticles(new Article(
-                $article->title,
-                $article->description,
-                $article->url,
-                $article->urlToImage
-            ));
-        }
-        return $articles;
-    }
-
     public function index(): string
     {
-        $articles = (new ArticlesController())->getAllArticles()->getLastEntries();
-        return $this->render('index.html.twig', ['articles' => $articles]);
+        $apiKey = $_ENV['API_KEY'];
+        $search = $_GET['search'] ?? 'Tesla';
+        $newsApi = new NewsApi($apiKey);
+        $articlesApiResponse = $newsApi->getEverything($search);
+
+        $articles = new ArticlesCollection();
+        foreach ($articlesApiResponse->articles as $article) $articles->addArticles(new Article(
+            $article->title,
+            $article->description,
+            $article->url,
+            $article->imageUrl
+        ));
+        return $this->render('index.html.twig', ['articles' => $articles->getArticles()]);
     }
 }
