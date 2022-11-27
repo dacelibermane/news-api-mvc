@@ -15,7 +15,7 @@ class Article
         $this->title = $title;
         $this->description = $description;
         $this->url = $url;
-        $this->image = $image;
+        $this->setImage($image);
     }
 
 
@@ -37,5 +37,10 @@ class Article
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    public function setImage(string $imageUrl): void
+    {
+        $this->image = str_replace('"', " ",$imageUrl);
     }
 }

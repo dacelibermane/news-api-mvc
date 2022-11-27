@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Global News</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="mb-4 p-2">
+    <div class="container-fluid d-flex align-content-center justify-content-center ">
+        <h1 class="align-content-center justify-content-center my-4"> Search Global News</h1>
+    </div>
+</header>
+
+<main>
+    <!--Form-->
+    <nav class="navbar d-flex align-content-center justify-content-center mb-5">
+        <form class="form-inline" action="/" method="get">
+            <div class="row">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
+                <button class="btn btn btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+    </nav>
+    <!--News Cards-->
+
+    <div class="container-fluid">
+        <div class="row row-color d-flex align-content-center justify-content-center">
+            {% for article in articles %}
+                <div class="card mb-2" style="width: 18rem;">
+                    {% if  not article.urlToImage %}
+                    <img src="../img/no_image.jpg" class="card-img-top" alt="...">
+                    {% else %}
+                        <img src="{{ article.urlToImage |trim }}" class="card-img-top" alt="article image">
+                        {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.description }}</p>
+                        <a href="{{ article.url }}" target="_blank" class="btn btn btn btn-primary ">Read article</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+</html>

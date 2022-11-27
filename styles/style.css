@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+    background: linear-gradient(rgba(25, 44, 62, 0.7), transparent), url("/img/world.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+header{
+    background-color: rgba(211, 230, 248,0.4);
+}
+
+.card-img-top{
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body{
+    background-color: rgba(108, 172, 232, 0.4);
+}
+
+.form-btn{
+    background-color: rgb(211, 230, 248);
+}
+
+

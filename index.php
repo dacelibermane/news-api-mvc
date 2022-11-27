@@ -3,17 +3,33 @@
 require_once "vendor/autoload.php";
 
 use App\Controllers\ArticlesController;
+use App\Models\Article;
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
-$cont = (new ArticlesController())->getAllArticles()->getLastEntries();
+//echo '<pre>';
+//
+//$articles = (new ArticlesController())->getAllArticles()->getLastEntries(10);
+//echo $articles[0];
+//foreach ($articles as $article){
+//    var_dump($article[0]->getTitle);
+//}
+//$articlesApi = (new ArticlesController())->getAllArticles();
+////$t = $articlesApi->getArticles()[0]->getTitle();
+//var_dump($articlesApi->getSpecifiedCountOfNews());
+////tiekam pie pirmās ziņas virsraksta
+//var_dump($articlesApi[0]->getTitle());
+//var_dump($t);
+//foreach ($articlesApi as $value){
+//    var_dump($value->articles[0]);
+//}
 
-echo "<pre>";
-
-var_dump($cont);
-
+//$articlesApi = (new ArticlesController())->getAllArticles();
+//$t = $articlesApi->getLastEntries();
+//
+//var_dump($t);
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
-    $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'getAllArticles']);
+    $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'index']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -38,24 +54,6 @@ switch ($routeInfo[0]) {
         $vars = $routeInfo[2];
         [$controller, $method] = $handler;
         $response = (new $controller)->{$method}();
-//        echo $response;
+        echo $response;
         break;
 }
-?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Global News</title>
-</head>
-<body>
-
-
-</body>
-</html>
-
-
