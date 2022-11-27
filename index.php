@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-use App\ArticlesCollection;
-
 require_once "vendor/autoload.php";
 
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
