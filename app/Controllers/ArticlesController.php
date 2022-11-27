@@ -20,7 +20,7 @@ class ArticlesController extends BaseController
             $article->title,
             $article->description,
             $article->url,
-            $article->imageUrl
+            $article->urlToImage
         ));
         return $this->render('index.html.twig', ['articles' => $articles->getArticles()]);
     }

@@ -8,14 +8,14 @@ class Article
     private string $title;
     private string $description;
     private string $url;
-    private ?string $image;
+    private ?string $imageUrl;
 
-    public function __construct(string $title, string $description, string $url, ?string $image = null)
+    public function __construct(string $title, string $description, string $url, ?string $imageUrl = null)
     {
         $this->title = $title;
         $this->description = $description;
         $this->url = $url;
-        $this->image = $image;
+        $this->image = $imageUrl;
     }
 
 
@@ -34,9 +34,9 @@ class Article
         return $this->url;
     }
 
-    public function getImage(): ?string
+    public function getImageUrl(): ?string
     {
-        return $this->image;
+        return $this->imageUrl;
     }
 
 }

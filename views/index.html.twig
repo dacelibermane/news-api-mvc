@@ -24,8 +24,8 @@
     <nav class="navbar d-flex align-content-center justify-content-center mb-5">
         <form class="form-inline" action="/" method="get">
             <div class="row">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-                <button class="btn btn btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" id="search" name="search" placeholder="Search" aria-label="Search" required>
+                <button class="btn btn btn btn-primary my-2 my-sm-0" type="submit" name="submit">Search</button>
             </div>
         </form>
     </nav>
@@ -34,7 +34,7 @@
         <div class="row row-color d-flex align-content-center justify-content-center">
             {% for article in articles|slice(0,10) %}
                 <div class="card mb-2" style="width: 18rem;">
-                    {% if  not article.urlToImage %}
+                    {% if  not article.image %}
                     <img src="../img/no_image.jpg" class="card-img-top" alt="...">
                     {% else %}
                         <img src="{{ article.image }}" class="card-img-top" alt="article image">
