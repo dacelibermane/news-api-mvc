@@ -10,9 +10,7 @@ class ArticlesCollection
 
     public function __construct(array $articles = [])
     {
-        foreach ($articles as $article) {
-            $this->addArticles($article);
-        }
+        $this->articles = $articles;
     }
 
     public function addArticles(Article $article): void
