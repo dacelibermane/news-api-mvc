@@ -22,5 +22,4 @@ class ArticlesCollection
     {
         return $this->articles;
     }
-
 }

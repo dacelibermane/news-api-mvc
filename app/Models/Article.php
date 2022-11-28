@@ -15,9 +15,8 @@ class Article
         $this->title = $title;
         $this->description = $description;
         $this->url = $url;
-        $this->image = $imageUrl;
+        $this->imageUrl = $imageUrl;
     }
-
 
     public function getTitle(): string
     {
