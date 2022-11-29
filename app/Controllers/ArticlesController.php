@@ -2,26 +2,18 @@
 
 namespace App\Controllers;
 
-use App\ArticlesCollection;
-use App\Models\Article;
-use jcobhams\NewsApi\NewsApi;
+use App\Services\ShowAllArticles;
+use App\Template;
 
-class ArticlesController extends BaseController
+class ArticlesController
 {
-    public function index(): string
+    public function index(): Template
     {
-        $apiKey = $_ENV['API_KEY'];
-        $search = $_GET['search'] ?? 'Tesla';
-        $newsApi = new NewsApi($apiKey);
-        $articlesApiResponse = $newsApi->getEverything($search);
+        $search = $_GET['search'] ?? 'movies';
+        $category = $_GET['category'] ?? null;
 
-        $articles = new ArticlesCollection();
-        foreach ($articlesApiResponse->articles as $article) $articles->addArticles(new Article(
-            $article->title,
-            $article->description,
-            $article->url,
-            $article->urlToImage
-        ));
-        return $this->render('index.html.twig', ['articles' => $articles->getArticles()]);
+        $articles = (new ShowAllArticles())->execute($search, $category);
+
+        return new Template('index.html.twig', ['articles' => $articles->getArticles()]);
     }
 }

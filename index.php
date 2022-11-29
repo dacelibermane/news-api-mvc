@@ -1,11 +1,14 @@
 <?php declare(strict_types=1);
 
+use App\Controllers\ArticlesController;
+use App\Template;
+
 require_once "vendor/autoload.php";
 
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $route) {
-    $route->addRoute('GET', '/', ['App\Controllers\ArticlesController', 'index']);
+    $route->addRoute('GET', '/', [ArticlesController::class, 'index']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -29,5 +32,9 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         [$controller, $method] = $handler;
-        echo (new $controller)->{$method}();
+        $response = (new $controller)->{$method}();
+
+        if ($response instanceof Template) {
+            echo $response->render();
+        }
 }
