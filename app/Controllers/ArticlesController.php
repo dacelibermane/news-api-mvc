@@ -9,7 +9,7 @@ class ArticlesController
 {
     public function index(): Template
     {
-        $search = $_GET['search'] ?? 'movies';
+        $search = $_GET['search'] ?? 'tesla';
         $category = $_GET['category'] ?? null;
 
         $articles = (new ShowAllArticles())->execute($search, $category);
